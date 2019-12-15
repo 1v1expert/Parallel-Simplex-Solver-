@@ -52,7 +52,7 @@ class SimplexSolver():
             # Attempt to find a non-negative pivot.
             pivot = self.find_pivot()
             if pivot[1] < 0:
-                if (enable_msg):
+                if enable_msg:
                     print("There exists no non-negative pivot. "
                           "Thus, the solution is infeasible.")
                 self.infeasible_doc()
@@ -60,8 +60,8 @@ class SimplexSolver():
                 return None
             else:
                 self.pivot_doc(pivot)
-                if (enable_msg):
-                    clear()
+                if enable_msg:
+                    # clear()
                     self._print_tableau()
                     print("\nThere are negative elements in the bottom row, "
                           "so the current solution is not optimal. "
