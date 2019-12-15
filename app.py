@@ -81,7 +81,7 @@ class SimplexSolver():
         
         solution = self.get_current_solution()
         self.final_solution_doc(solution)
-        if (enable_msg):
+        if enable_msg:
             # clear()
             self._print_tableau()
             print("Current solution: %s\n" % str(solution))
