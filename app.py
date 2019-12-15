@@ -82,7 +82,7 @@ class SimplexSolver():
         solution = self.get_current_solution()
         self.final_solution_doc(solution)
         if (enable_msg):
-            clear()
+            # clear()
             self._print_tableau()
             print("Current solution: %s\n" % str(solution))
             print("That's all folks!")
@@ -160,8 +160,7 @@ class SimplexSolver():
         self.tableau.append(c + [0] * (len(self.b) + 1))
     
     def find_pivot(self):
-        ''' Find pivot index.
-        '''
+        """Find pivot index. """
         enter_index = self.get_entering_var()
         depart_index = self.get_departing_var(enter_index)
         return [enter_index, depart_index]
