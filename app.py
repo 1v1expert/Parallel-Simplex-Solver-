@@ -26,7 +26,7 @@ class SimplexSolver():
         self.gen_doc = False
         self.doc = ""
     
-    def run_simplex(self, A, b, c, prob='max', ineq=list(), enable_msg=False, latex=False):
+    def run_simplex(self, A, b, c, prob='max', ineq=list(), enable_msg=True, latex=False):
         """ Run simplex algorithm. """
         self.prob = prob
         self.gen_doc = latex
@@ -228,7 +228,7 @@ class SimplexSolver():
             matrix[i] += [self.b[i]]
         return matrix
     
-    def should_terminate(self):
+    def should_terminate(self) -> bool:
         ''' Determines whether there are any negative elements
             on the bottom row
         '''
@@ -531,4 +531,4 @@ if __name__ == '__main__':
     if p not in ('max', 'min'):
         p = 'max'
     
-    SimplexSolver().run_simplex(A, b, c, prob=p, enable_msg=False, latex=True)
+    SimplexSolver().run_simplex(A, b, c, prob=p, enable_msg=True, latex=True)
