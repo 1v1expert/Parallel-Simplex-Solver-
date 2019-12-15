@@ -27,8 +27,7 @@ class SimplexSolver():
         self.doc = ""
     
     def run_simplex(self, A, b, c, prob='max', ineq=list(), enable_msg=False, latex=False):
-        ''' Run simplex algorithm.
-        '''
+        """ Run simplex algorithm. """
         self.prob = prob
         self.gen_doc = latex
         self.ineq = ineq
@@ -41,7 +40,7 @@ class SimplexSolver():
         
         # Are there any negative elements on the bottom (disregarding
         # right-most element...)
-        while (not self.should_terminate()):
+        while not self.should_terminate():
             # ... if so, continue.
             if enable_msg:
                 # clear()
