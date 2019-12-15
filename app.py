@@ -26,8 +26,7 @@ class SimplexSolver():
         self.gen_doc = False
         self.doc = ""
     
-    def run_simplex(self, A, b, c, prob='max', ineq=[],
-                    enable_msg=False, latex=False):
+    def run_simplex(self, A, b, c, prob='max', ineq=list(), enable_msg=False, latex=False):
         ''' Run simplex algorithm.
         '''
         self.prob = prob
@@ -44,8 +43,8 @@ class SimplexSolver():
         # right-most element...)
         while (not self.should_terminate()):
             # ... if so, continue.
-            if (enable_msg):
-                clear()
+            if enable_msg:
+                # clear()
                 self._print_tableau()
                 print("Current solution: %s\n" %
                       str(self.get_current_solution()))
@@ -497,7 +496,7 @@ class SimplexSolver():
 
 
 if __name__ == '__main__':
-    clear()
+    # clear()
     
     ''' COMMAND LINE INPUT HANDLING '''
     A = []
