@@ -5,9 +5,9 @@ clear = lambda: os.system('cls' if os.name == 'nt' else 'clear')
 
 
 class SimplexSolver():
-    ''' Solves linear programs using simplex algorithm and
+    """ Solves linear programs using simplex algorithm and
         output problem steps in LaTeX file.
-    '''
+    """
     
     # Table for converting inequality list to LaTeX
     latex_ineq = {'=': '=',
@@ -141,9 +141,9 @@ class SimplexSolver():
                 self.entering.append("b")
     
     def add_slack_variables(self):
-        ''' Add slack & artificial variables to matrix A to transform
+        """ Add slack & artificial variables to matrix A to transform
             all inequalities to equalities.
-        '''
+        """
         slack_vars = self._generate_identity(len(self.tableau))
         for i in range(0, len(slack_vars)):
             self.tableau[i] += slack_vars[i]
@@ -241,8 +241,7 @@ class SimplexSolver():
         return result
     
     def get_current_solution(self):
-        ''' Get the current solution from tableau.
-        '''
+        """ Get the current solution from tableau. """
         solution = {}
         for x in self.entering:
             if x is not 'b':
@@ -255,7 +254,7 @@ class SimplexSolver():
             [len(self.tableau[0]) - 1]
         
         # If this is a minimization problem...
-        if (self.prob == 'min'):
+        if self.prob == 'min':
             # ... then get x_1, ..., x_n  from last element of
             # the slack columns.
             bottom_row = self.tableau[len(self.tableau) - 1]
