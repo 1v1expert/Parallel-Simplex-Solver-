@@ -1,4 +1,4 @@
-from simplex import SimplexSolver
+from app import SimplexSolver
 from fractions import Fraction
 import unittest
 
