@@ -150,15 +150,16 @@ class SimplexSolver():
             self.tableau[i] += [self.b[i]]
     
     def create_tableau(self):
-        ''' Create initial tableau table.
-        '''
+        """ Create initial tableau table."""
+        print(self.A, '\n')
         self.tableau = copy.deepcopy(self.A)
         self.add_slack_variables()
         c = copy.deepcopy(self.c)
         for index, value in enumerate(c):
             c[index] = -value
         self.tableau.append(c + [0] * (len(self.b) + 1))
-    
+        print(self.tableau)
+        
     def find_pivot(self):
         """Find pivot index. """
         enter_index = self.get_entering_var()
@@ -166,8 +167,7 @@ class SimplexSolver():
         return [enter_index, depart_index]
     
     def pivot(self, pivot_index):
-        ''' Perform operations on pivot.
-        '''
+        """ Perform operations on pivot. """
         j, i = pivot_index
         
         pivot = self.tableau[i][j]
@@ -197,9 +197,8 @@ class SimplexSolver():
         return most_neg_ind
     
     def get_departing_var(self, entering_index):
-        ''' To calculate the departing variable, get the minimum of the ratio
-            of b (b_i) to the corresponding value in the entering collumn.
-        '''
+        """ To calculate the departing variable, get the minimum of the ratio
+            of b (b_i) to the corresponding value in the entering collumn. """
         skip = 0
         min_ratio_index = -1
         min_ratio = 0
