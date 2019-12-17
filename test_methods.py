@@ -25,8 +25,8 @@ class MainTestCase(object):
 
         result = linprog(c, A_ub=A, b_ub=b, bounds=(self.x0_bounds, self.x1_bounds), method=method)
         
-        if self.pprint:
-            print(result)
+        if self.pprint and result.success:
+            print("Current solution: {}, F={}\n".format(result.x, result.fun))
             
         return result
 
@@ -45,9 +45,16 @@ with MainTestCase(pprint=True) as test:
     """
     result = test.start(A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[-2, -45], method='simplex')
     if result.success:
-        print(result.x)
+        pass
+        # print(result.x)
     
 
 # SimplexSolver().run_simplex(A=[[2, 1, 0], [1, 2, -2], [0, 1, 2]], b=[10, 20, 5], c=[2, -1, 2])
-# SimplexSolver().run_simplex(A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[-2, -45])
+simplex_start = time.time()
+SimplexSolver().run_simplex(A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[2, 45], enable_msg=False, prob='max')
+print('Full time: {}'.format(time.time() - simplex_start))
+
+
+# Simplex solver and checker
+# http://simplex.tode.cz/en/#steps
 

@@ -84,8 +84,8 @@ class SimplexSolver():
         if enable_msg:
             # clear()
             self._print_tableau()
-            print("Current solution: %s\n" % str(solution))
-            print("That's all folks!")
+        print("Current solution: %s\n" % str(solution))
+        print("That's all folks!")
         self.print_doc()
         return solution
     
@@ -150,14 +150,14 @@ class SimplexSolver():
     
     def create_tableau(self):
         """ Create initial tableau table."""
-        print(self.A, '\n')
+        # print(self.A, '\n')
         self.tableau = copy.deepcopy(self.A)
         self.add_slack_variables()
         c = copy.deepcopy(self.c)
         for index, value in enumerate(c):
             c[index] = -value
         self.tableau.append(c + [0] * (len(self.b) + 1))
-        print(self.tableau)
+        # print(self.tableau)
         
     def find_pivot(self):
         """Find pivot index. """
