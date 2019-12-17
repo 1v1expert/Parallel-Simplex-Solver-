@@ -38,31 +38,30 @@ class MainTestCase(object):
 # print(result)
 
 
-with MainTestCase(pprint=True) as test:
-    """ Maximize(2*X1 + 45*X2)
-    subject to
-    3*x1	+	7*x2	≤	79
-    0*x1    +   5*x2	≤	42
-    -x1     +   0*x2 	≤	-3
-    """
-    result = test.start(A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[-2, -45], method='simplex')
-    if result.success:
-        pass
-        # print(result.x)
-    
+# with MainTestCase(pprint=True) as test:
+#     """ Maximize(2*X1 + 45*X2)
+#     subject to
+#     3*x1	+	7*x2	≤	79
+#     0*x1    +   5*x2	≤	42
+#     -x1     +   0*x2 	≤	-3
+#     """
+#     result = test.start(A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[-2, -45], method='simplex')
+#     if result.success:
+#         pass
+
 
 # SimplexSolver().run_simplex(A=[[2, 1, 0], [1, 2, -2], [0, 1, 2]], b=[10, 20, 5], c=[2, -1, 2])
 # ======
 # STANDART SOLVER
-simplex_start = time.time()
-SimplexSolver().run_simplex(
-    A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[2, 45], enable_msg=False, prob='max')
-print('Full time: {}'.format(time.time() - simplex_start))
+# simplex_start = time.time()
+# SimplexSolver().run_simplex(
+#     A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[2, 45], enable_msg=False, prob='max')
+# print('Full time: {}'.format(time.time() - simplex_start))
 
 # MODIFIED SOLVER
 simplex_start = time.time()
 ModifiedSimplexMethod().run_simplex(
-    A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[2, 45], enable_msg=False, prob='max')
+    A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[2, 45], enable_msg=True, prob='max')
 print('Full time: {}'.format(time.time() - simplex_start))
 
 # Simplex solver and checker

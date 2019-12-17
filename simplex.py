@@ -150,7 +150,6 @@ class SimplexSolver():
     
     def create_tableau(self):
         """ Create initial tableau table."""
-        # print(self.A, '\n')
         self.tableau = copy.deepcopy(self.A)
         self.add_slack_variables()
         c = copy.deepcopy(self.c)
@@ -219,8 +218,8 @@ class SimplexSolver():
         return min_ratio_index
     
     def get_Ab(self):
-        ''' Get A matrix with b vector appended.
-        '''
+        """ Get A matrix with b vector appended. """
+        
         matrix = copy.deepcopy(self.A)
         for i in range(0, len(matrix)):
             matrix[i] += [self.b[i]]
@@ -437,9 +436,10 @@ class SimplexSolver():
         else:
             return r"\frac{%s}{%s}" % (str(fract.numerator), str(fract.denominator))
     
-    def _generate_identity(self, n):
-        ''' Helper function for generating a square identity matrix.
-        '''
+    @staticmethod
+    def _generate_identity(n) -> list():
+        """ Helper function for generating a square identity matrix.
+        """
         I = []
         for i in range(0, n):
             row = []
