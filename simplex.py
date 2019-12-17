@@ -90,8 +90,7 @@ class SimplexSolver():
         return solution
     
     def set_simplex_input(self, A, b, c):
-        ''' Set initial variables and create tableau.
-        '''
+        """Set initial variables and create tableau."""
         # Convert all entries to fractions for readability.
         for a in A:
             self.A.append([Fraction(x) for x in a])
