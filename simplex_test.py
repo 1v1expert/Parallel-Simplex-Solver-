@@ -1,4 +1,5 @@
 from app import SimplexSolver
+from test_methods import MainTestCase
 from fractions import Fraction
 import unittest
 
@@ -222,6 +223,29 @@ class SimplexSolverTest(unittest.TestCase):
                                                            30000],
                                                           [20000, 25000],
                                                           prob='min'))
+
+
+class SimplexLinprogSolverTest(unittest.TestCase):
+
+    ''' STANDARD FORM MAXIMIZATION EXAMPLES '''
+    def test_max_feasible1(self):
+        ''' Find optimal solution to max(x1 + x2) such that:
+            Ax <= b,
+            x1, x2 >= 0,
+            A =  |2 1|, b = |4|, c = |1|
+                 |1 2|      |3|      |1|
+
+            Source: http://mat.gsia.cmu.edu/classes/QUANT/NOTES/chap7.pdf, Example 7.2.1
+        '''
+        self.assertDictEqual({'x_1': Fraction(5, 3),
+                              'x_2': Fraction(2, 3),
+                              's_1': Fraction(0),
+                              's_2': Fraction(0),
+                              'z': Fraction(7, 3)},
+                             MainTestCase().start_test([[2, 1],
+                                                        [1, 2]],
+                                                       [4, 3],
+                                                       [1, 1]))
 
 
 if __name__ == '__main__':
