@@ -491,6 +491,10 @@ class SimplexSolver():
         input("Press enter to continue...")
 
 
+class ModifiedSimplexMethod(object):
+    pass
+
+
 if __name__ == '__main__':
     # clear()
     
