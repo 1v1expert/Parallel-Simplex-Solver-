@@ -465,34 +465,24 @@ class SimplexSolver():
             '|'
     
     def _print_tableau(self):
-        ''' Print simplex tableau.
-        '''
-        print
-        ' ',
+        """ Print simplex tableau. """
+        print(' ')
         for val in self.entering:
-            print
-            '{:^5}'.format(str(val)),
-        print
-        ' '
+            print('{:^5}'.format(str(val)))
+        print(' ')
         for num, row in enumerate(self.tableau):
-            print
-            '|',
+            print('|')
+            
             for index, val in enumerate(row):
-                print
-                '{:^5}'.format(str(val)),
+                print('{:^5}'.format(str(val)))
             if num < (len(self.tableau) - 1):
-                print
-                '| %s' % self.departing[num]
+                print('| %s' % self.departing[num])
             else:
-                print
-                '|'
+                print('|')
     
-    def _prompt(self):
+    @staticmethod
+    def _prompt():
         input("Press enter to continue...")
-
-
-class ModifiedSimplexMethod(object):
-    pass
 
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-from app import SimplexSolver
+from simplex import SimplexSolver
 from scipy.optimize import linprog
 import time
 
@@ -43,7 +43,7 @@ with MainTestCase(pprint=True) as test:
     0*x1    +   5*x2	≤	42
     -x1     +   0*x2 	≤	-3
     """
-    result = test.start(A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[-2, -45])
+    result = test.start(A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[-2, -45], method='simplex')
     if result.success:
         print(result.x)
     

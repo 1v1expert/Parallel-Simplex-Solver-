@@ -1,5 +1,6 @@
-from app import SimplexSolver
+from simplex import SimplexSolver
 from test_methods import MainTestCase
+
 from fractions import Fraction
 import unittest
 
@@ -242,10 +243,10 @@ class SimplexLinprogSolverTest(unittest.TestCase):
                               's_1': Fraction(0),
                               's_2': Fraction(0),
                               'z': Fraction(7, 3)},
-                             MainTestCase().start_test([[2, 1],
+                             MainTestCase().start_test(A=[[2, 1],
                                                         [1, 2]],
-                                                       [4, 3],
-                                                       [1, 1]))
+                                                       b=[4, 3],
+                                                       c=[1, 1]))
 
 
 if __name__ == '__main__':
