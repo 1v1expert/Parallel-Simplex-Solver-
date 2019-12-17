@@ -59,12 +59,12 @@ class ModifiedSimplexMethod(object):
             elif self.prob == 'min':
                 self.ineq = ['>='] * len(b)
     
-        # self.update_enter_depart(self.get_Ab())
+        self.update_enter_depart(self.get_Ab())
         # self.init_problem_doc()
     
-        # self.create_tableau()
+        self.create_tableau()
         # self.ineq = ['='] * len(self.b)
-        # self.update_enter_depart(self.tableau)
+        self.update_enter_depart(self.tableau)
         # self.slack_doc()
         # self.init_tableau_doc()
     
@@ -76,6 +76,14 @@ class ModifiedSimplexMethod(object):
     
     def get_current_solution(self):
         pass
+
+    def get_Ab(self):
+        """ Get A matrix with b vector appended. """
+    
+        matrix = copy.deepcopy(self.A)
+        for i in range(0, len(matrix)):
+            matrix[i] += [self.b[i]]
+        return matrix
     
     def create_tableau(self):
         """ Create initial tableau table."""
@@ -92,6 +100,8 @@ class ModifiedSimplexMethod(object):
             all inequalities to equalities.
         """
         slack_vars = self._generate_identity(len(self.tableau))
+        print(slack_vars)
+        print(slack_vars[0], self.tableau)
         for i in range(0, len(slack_vars)):
             self.tableau[i] += slack_vars[i]
             self.tableau[i] += [self.b[i]]
@@ -100,3 +110,26 @@ class ModifiedSimplexMethod(object):
     def _generate_identity(n: int) -> np.ndarray:
         """ Helper function for generating a square identity matrix. """
         return np.eye(n)
+    
+    def update_enter_depart(self, matrix):
+        self.entering = []
+        self.departing = []
+        # Create tables for entering and departing variables
+        for i in range(0, len(matrix[0])):
+            if i < len(self.A[0]):
+                prefix = 'x' if self.prob == 'max' else 'y'
+                self.entering.append("%s_%s" % (prefix, str(i + 1)))
+            elif i < len(matrix[0]) - 1:
+                self.entering.append("s_%s" % str(i + 1 - len(self.A[0])))
+                self.departing.append("s_%s" % str(i + 1 - len(self.A[0])))
+            else:
+                self.entering.append("b")
+
+import time
+
+simplex_start = time.time()
+test = ModifiedSimplexMethod()
+test.run_simplex(
+    A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[2, 45], enable_msg=True, prob='max')
+test._print_conditions()
+print('Full time: {}'.format(time.time() - simplex_start))
