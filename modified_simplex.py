@@ -28,10 +28,23 @@ class ModifiedSimplexMethod(object):
             self._print_tableau()
             print("Current solution: %s\n" %
                   str(self.get_current_solution()))
-            self._prompt()
+            # self._prompt()
     
     def _print_tableau(self):
-        pass
+        """ Print simplex tableau. """
+        print(' ')
+        for val in self.entering:
+            print('{:^5}'.format(str(val)))
+        print(' ')
+        for num, row in enumerate(self.tableau):
+            print('|')
+        
+            for index, val in enumerate(row):
+                print('{:^5}'.format(str(val)))
+            if num < (len(self.tableau) - 1):
+                print('| %s' % self.departing[num])
+            else:
+                print('|')
     
     def set_simplex_input(self, A, b, c) -> None:
         """ Set initial variables and create tableau. """
@@ -55,8 +68,11 @@ class ModifiedSimplexMethod(object):
         # self.slack_doc()
         # self.init_tableau_doc()
     
-    def _pprint(self):
-        pass
+    def _print_conditions(self):
+        func = ''
+        for x, i in enumerate(self.c):
+            func += str(x) + 'x' + i
+        print("Func {}({})".format(self.prob, func))
     
     def get_current_solution(self):
         pass
