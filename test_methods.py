@@ -22,9 +22,9 @@ class Test1(object):
         result = linprog([-2, -45], A_ub=[[3, 7], [0, 5], [-1, 0]], b_ub=[79, 42, -3], bounds=(x0_bounds, x1_bounds),
                          method=method)
 
-def test2():
-revised_simplex = linprog(c, A_ub=A, b_ub=b, bounds=(x0_bounds, x1_bounds), method='')
+# def test2():
+# revised_simplex = linprog(c, A_ub=A, b_ub=b, bounds=(x0_bounds, x1_bounds), method='')
 
-print(result)
+# print(result)
 
 Test1().start()
