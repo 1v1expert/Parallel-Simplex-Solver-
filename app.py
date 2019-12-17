@@ -26,7 +26,7 @@ class SimplexSolver():
         self.gen_doc = False
         self.doc = ""
     
-    def run_simplex(self, A, b, c, prob='max', ineq=list(), enable_msg=False, latex=False):
+    def run_simplex(self, A=[[]], b=[], c=[], prob='max', ineq=list(), enable_msg=False, latex=False):
         """ Run simplex algorithm. """
         self.prob = prob
         self.gen_doc = latex
@@ -530,4 +530,4 @@ if __name__ == '__main__':
     if p not in ('max', 'min'):
         p = 'max'
     
-    SimplexSolver().run_simplex(A, b, c, prob=p, enable_msg=True, latex=True)
+    SimplexSolver().run_simplex(A=A, b=b, c=c, prob=p, enable_msg=True, latex=True)
