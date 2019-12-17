@@ -70,8 +70,8 @@ class ModifiedSimplexMethod(object):
     
     def _print_conditions(self):
         func = ''
-        for x, i in enumerate(self.c):
-            func += str(x) + 'x' + i
+        for i, x in enumerate(self.c):
+            func += '+{}X{}'.format(x, i)
         print("Func {}({})".format(self.prob, func))
     
     def get_current_solution(self):
