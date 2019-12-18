@@ -32,19 +32,23 @@ class ModifiedSimplexMethod(object):
     
     def _print_tableau(self):
         """ Print simplex tableau. """
-        print(' ')
+        output = ' '
         for val in self.entering:
-            print('{:^5}'.format(str(val)))
-        print(' ')
+            output += '{:^5}'.format(str(val))
+        print(output + ' ')
+        
+        output = ''
         for num, row in enumerate(self.tableau):
-            print('|')
+            output += '|'
         
             for index, val in enumerate(row):
-                print('{:^5}'.format(str(val)))
+                output += '{:^5}'.format(str(val))
             if num < (len(self.tableau) - 1):
-                print('| %s' % self.departing[num])
+                output += '| %s' % self.departing[num]
             else:
-                print('|')
+                output += '|'
+            output += '\n'
+        print(output)
     
     def set_simplex_input(self, A, b, c) -> None:
         """ Set initial variables and create tableau. """
@@ -100,8 +104,8 @@ class ModifiedSimplexMethod(object):
             all inequalities to equalities.
         """
         slack_vars = self._generate_identity(len(self.tableau))
-        print(slack_vars)
-        print(slack_vars[0], self.tableau)
+        # print(slack_vars)
+        # print(slack_vars[0], self.tableau)
         for i in range(0, len(slack_vars)):
             self.tableau[i] += slack_vars[i]
             self.tableau[i] += [self.b[i]]
@@ -109,7 +113,16 @@ class ModifiedSimplexMethod(object):
     @staticmethod
     def _generate_identity(n: int) -> np.ndarray:
         """ Helper function for generating a square identity matrix. """
-        return np.eye(n)
+        I = []
+        for i in range(0, n):
+            row = []
+            for j in range(0, n):
+                if i == j:
+                    row.append(1)
+                else:
+                    row.append(0)
+            I.append(row)
+        return I
     
     def update_enter_depart(self, matrix):
         self.entering = []
@@ -125,11 +138,11 @@ class ModifiedSimplexMethod(object):
             else:
                 self.entering.append("b")
 
-import time
-
-simplex_start = time.time()
-test = ModifiedSimplexMethod()
-test.run_simplex(
-    A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[2, 45], enable_msg=True, prob='max')
-test._print_conditions()
-print('Full time: {}'.format(time.time() - simplex_start))
+# import time
+#
+# simplex_start = time.time()
+# test = ModifiedSimplexMethod()
+# test.run_simplex(
+#     A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[2, 45], enable_msg=True, prob='max')
+# test._print_conditions()
+# print('Full time: {}'.format(time.time() - simplex_start))
