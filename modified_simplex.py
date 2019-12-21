@@ -3,6 +3,75 @@ import copy
 
 import numpy as np
 
+from simplex import SimplexSolver
+
+
+class ModifiedSimplexMethodTwo(SimplexSolver):
+    def run_simplex(self, A=[[]], b=[], c=[], prob='max', ineq=list(), enable_msg=False, latex=True):
+        """ Run simplex algorithm. """
+        self.prob = prob
+        self.gen_doc = latex
+        self.ineq = ineq
+        
+        # Create the header for the latex doc.
+        # self.start_doc()
+        
+        # Add slack & artificial variables
+        self.set_simplex_input(A, b, c)
+        
+        # Are there any negative elements on the bottom (disregarding
+        # right-most element...)
+        while not self.should_terminate():
+            # ... if so, continue.
+            if enable_msg:
+                # clear()
+                self._print_tableau()
+                print("Current solution: %s\n" %
+                      str(self.get_current_solution()))
+                self._prompt()
+            
+            # Attempt to find a non-negative pivot.
+            pivot = self.find_pivot()
+            if pivot[1] < 0:
+                if enable_msg:
+                    print("There exists no non-negative pivot. "
+                          "Thus, the solution is infeasible.")
+                # self.infeasible_doc()
+                # self.print_doc()
+                return None
+            else:
+                # self.pivot_doc(pivot)
+                if enable_msg:
+                    # clear()
+                    self._print_tableau()
+                    print("\nThere are negative elements in the bottom row, "
+                          "so the current solution is not optimal. "
+                          "Thus, pivot to improve the current solution. The "
+                          "entering variable is %s and the departing "
+                          "variable is %s.\n" %
+                          (str(self.entering[pivot[0]]),
+                           str(self.departing[pivot[1]])))
+                    self._prompt()
+                    print("\nPerform elementary row operations until the "
+                          "pivot is one and all other elements in the "
+                          "entering column are zero.\n")
+            
+            # Do row operations to make every other element in column zero.
+            self.pivot(pivot)
+            # self.tableau_doc()
+        
+        solution = self.get_current_solution()
+        # self.final_solution_doc(solution)
+        if enable_msg:
+            # clear()
+            self._print_tableau()
+        
+        # print("Current solution: %s\n" % str(solution))
+        # print("That's all folks!")
+        
+        # self.print_doc()
+        return solution
+
 
 class ModifiedSimplexMethod(object):
     def __init__(self):

@@ -84,8 +84,10 @@ class SimplexSolver(object):
         if enable_msg:
             # clear()
             self._print_tableau()
-        print("Current solution: %s\n" % str(solution))
-        print("That's all folks!")
+            
+        # print("Current solution: %s\n" % str(solution))
+        # print("That's all folks!")
+        
         self.print_doc()
         return solution
     
