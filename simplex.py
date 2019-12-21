@@ -4,7 +4,7 @@ from fractions import Fraction
 clear = lambda: os.system('cls' if os.name == 'nt' else 'clear')
 
 
-class SimplexSolver():
+class SimplexSolver(object):
     """ Solves linear programs using simplex algorithm and
         output problem steps in LaTeX file.
     """

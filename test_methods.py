@@ -53,18 +53,45 @@ class MainTestCase(object):
 # SimplexSolver().run_simplex(A=[[2, 1, 0], [1, 2, -2], [0, 1, 2]], b=[10, 20, 5], c=[2, -1, 2])
 # ======
 # STANDART SOLVER
-# simplex_start = time.time()
-# SimplexSolver().run_simplex(
-#     A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[2, 45], enable_msg=False, prob='max')
-# print('Full time: {}'.format(time.time() - simplex_start))
+simplex_start = time.time()
+SimplexSolver().run_simplex(
+    A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[2, 45], enable_msg=False, prob='max')
+
+
+def test_cycle():
+    SimplexSolver().run_simplex(A=[[400, 300], [300, 400], [200, 500]],
+                                b=[25000, 27000, 30000],
+                                c=[20000, 25000],
+                                enable_msg=False,
+                                prob='min')
+    
+    SimplexSolver().run_simplex(A=[[1, 1, 1], [0, 1, 2], [-1, 2, 2]],
+                                b=[6, 8, 4],
+                                c=[2, 10, 8],
+                                enable_msg=False,
+                                prob='min')
+    
+    SimplexSolver().run_simplex(A=[[2, 1], [1, 1]],
+                                b=[6, 4],
+                                c=[3, 2],
+                                enable_msg=False,
+                                prob='min')
+
+
+for i in range(500):
+    test_cycle()
+print('Full time: {}'.format(time.time() - simplex_start))
+
+
+
 
 # MODIFIED SOLVER
-simplex_start = time.time()
-test = ModifiedSimplexMethod()
-test.run_simplex(
-    A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[2, 45], enable_msg=True, prob='max')
-# test._print_conditions()
-print('Full time: {}'.format(time.time() - simplex_start))
+# simplex_start = time.time()
+# test = ModifiedSimplexMethod()
+# test.run_simplex(
+#     A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[2, 45], enable_msg=True, prob='max')
+# # test._print_conditions()
+# print('Full time: {}'.format(time.time() - simplex_start))
 
 # Simplex solver and checker
 # http://simplex.tode.cz/en/#steps
