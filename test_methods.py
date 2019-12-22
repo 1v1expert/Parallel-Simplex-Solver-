@@ -99,6 +99,6 @@ test.run_simplex(
 # test._print_conditions()
 print('Full time: {}'.format(time.time() - simplex_start))
 
-Simplex solver and checker
-http://simplex.tode.cz/en/#steps
+# Simplex solver and checker
+# http://simplex.tode.cz/en/#steps
 
