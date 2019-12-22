@@ -92,13 +92,13 @@ print('Full time: {}'.format(time.time() - simplex_start))
 # print(results)
 
 # MODIFIED SOLVER
-simplex_start = time.time()
-test = ModifiedSimplexMethod()
-test.run_simplex(
-    A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[2, 45], enable_msg=True, prob='max')
-# test._print_conditions()
-print('Full time: {}'.format(time.time() - simplex_start))
-
-Simplex solver and checker
-http://simplex.tode.cz/en/#steps
+# simplex_start = time.time()
+# test = ModifiedSimplexMethod()
+# test.run_simplex(
+#     A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[2, 45], enable_msg=True, prob='max')
+# # test._print_conditions()
+# print('Full time: {}'.format(time.time() - simplex_start))
+#
+# Simplex solver and checker
+# http://simplex.tode.cz/en/#steps
 
