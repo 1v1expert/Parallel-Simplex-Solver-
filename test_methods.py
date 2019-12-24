@@ -32,10 +32,10 @@ class MainTestCase(object):
             
         return result
 
-def test2():
-revised_simplex = linprog(c, A_ub=A, b_ub=b, bounds=(x0_bounds, x1_bounds), method='')
+# def test2():
+# revised_simplex = linprog(c, A_ub=A, b_ub=b, bounds=(x0_bounds, x1_bounds), method='')
 
-print(result)
+# print(result)
 
 
 def linprogtest():
