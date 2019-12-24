@@ -32,22 +32,23 @@ class MainTestCase(object):
             
         return result
 
-# def test2():
-# revised_simplex = linprog(c, A_ub=A, b_ub=b, bounds=(x0_bounds, x1_bounds), method='')
+def test2():
+revised_simplex = linprog(c, A_ub=A, b_ub=b, bounds=(x0_bounds, x1_bounds), method='')
 
-# print(result)
+print(result)
 
 
-# with MainTestCase(pprint=True) as test:
-#     """ Maximize(2*X1 + 45*X2)
-#     subject to
-#     3*x1	+	7*x2	≤	79
-#     0*x1    +   5*x2	≤	42
-#     -x1     +   0*x2 	≤	-3
-#     """
-#     result = test.start(A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[-2, -45], method='simplex')
-#     if result.success:
-#         pass
+def linprogtest():
+    with MainTestCase(pprint=False) as test:
+        """ Maximize(2*X1 + 45*X2)
+        subject to
+        3*x1	+	7*x2	≤	79
+        0*x1    +   5*x2	≤	42
+        -x1     +   0*x2 	≤	-3
+        """
+        result = test.start(A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[-2, -45], method='revised simplex')
+        # if result.success:
+        #     pass
 
 
 # SimplexSolver().run_simplex(A=[[2, 1, 0], [1, 2, -2], [0, 1, 2]], b=[10, 20, 5], c=[2, -1, 2])
@@ -61,33 +62,38 @@ import multiprocessing as mp
 #     A=[[3, 7], [0, 5], [-1, 0]], b=[79, 42, -3], c=[2, 45], enable_msg=False, prob='max')
 
 
-def test_cycle(n):
-    ModifiedSimplexMethodTwo().run_simplex(A=[[400, 300], [300, 400], [200, 500]],
-                                b=[25000, 27000, 30000],
-                                c=[20000, 25000],
-                                enable_msg=False,
-                                prob='min')
+def test_cycle():
+    SimplexSolver().run_simplex(A=[[3, 7], [0, 5], [-1, 0]],
+                                           b=[79, 42, -3],
+                                           c=[2, 45],
+                                           enable_msg=False)
+    # ModifiedSimplexMethodTwo().run_simplex(A=[[400, 300], [300, 400], [200, 500]],
+    #                             b=[25000, 27000, 30000],
+    #                             c=[20000, 25000],
+    #                             enable_msg=False,
+    #                             prob='min')
 
-    ModifiedSimplexMethodTwo().run_simplex(A=[[1, 1, 1], [0, 1, 2], [-1, 2, 2]],
-                                b=[6, 8, 4],
-                                c=[2, 10, 8],
-                                enable_msg=False,
-                                prob='min')
+    # ModifiedSimplexMethodTwo().run_simplex(A=[[1, 1, 1], [0, 1, 2], [-1, 2, 2]],
+    #                             b=[6, 8, 4],
+    #                             c=[2, 10, 8],
+    #                             enable_msg=False,
+    #                             prob='min')
 
-    ModifiedSimplexMethodTwo().run_simplex(A=[[2, 1], [1, 1]],
-                                b=[6, 4],
-                                c=[3, 2],
-                                enable_msg=False,
-                                prob='min')
-    return n
+    # ModifiedSimplexMethodTwo().run_simplex(A=[[2, 1], [1, 1]],
+    #                             b=[6, 4],
+    #                             c=[3, 2],
+    #                             enable_msg=False,
+    #                             prob='min')
+    # return n
 
 
-pool = mp.Pool(mp.cpu_count())
+# pool = mp.Pool(mp.cpu_count())
 simplex_start = time.time()
-results = [pool.apply(test_cycle, args=(row, )) for row in range(1000)]
+# results = [pool.apply(test_cycle, args=(row, )) for row in range(1000)]
 
-# for i in range(1000):
-#     test_cycle(i)
+for i in range(1000):
+    linprogtest()
+    # test_cycle()
 print('Full time: {}'.format(time.time() - simplex_start))
 # print(results)
 
