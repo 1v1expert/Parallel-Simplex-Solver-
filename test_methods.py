@@ -63,8 +63,8 @@ import multiprocessing as mp
 
 
 def test_cycle():
-    SimplexSolver().run_simplex(A=[[3, 7], [0, 5], [-1, 0]],
-                                           b=[79, 42, -3],
+    SimplexSolver().run_simplex(A=[[3, 7], [0, 5], [-1, 0], [4, 7], [3, 9]],
+                                           b=[79, 42, -3, 5, 2],
                                            c=[2, 45],
                                            enable_msg=False)
     # ModifiedSimplexMethodTwo().run_simplex(A=[[400, 300], [300, 400], [200, 500]],
@@ -91,9 +91,9 @@ def test_cycle():
 simplex_start = time.time()
 # results = [pool.apply(test_cycle, args=(row, )) for row in range(1000)]
 
-for i in range(1000):
-    linprogtest()
-    # test_cycle()
+for i in range(10000):
+    # linprogtest()
+    test_cycle()
 print('Full time: {}'.format(time.time() - simplex_start))
 # print(results)
 
