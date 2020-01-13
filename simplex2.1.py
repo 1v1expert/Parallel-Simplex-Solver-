@@ -37,3 +37,19 @@ k = int(file.readline())
 file.close()
 lens = len(A[0])
 
+def diff_cur(ind1,ind2,f_ind,e_ind,cof):
+    for j in range(f_ind,e_ind+1):
+        A[ind1][j] = A[ind1][j]/cof
+
+def diff_another(ind2,ind0,ind1,f_ind,e_ind,cof):
+    line1 = A[ind0][f_ind:e_ind+1]
+    for s in range(len(line1)):
+        line1[s] *= cof
+    for s in range(len(line1)):
+        A[ind1][s+f_ind] += line1[s]
+
+def multi_diff_another(ind2,ind0,f_ind,e_ind,coefs):
+    for j in range(n + 1):
+        if j != ind_coeff:
+            diff_another(ind2, ind0, j, f_ind, e_ind,coefs[j])
+    
