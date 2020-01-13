@@ -52,4 +52,4 @@ def multi_diff_another(ind2,ind0,f_ind,e_ind,coefs):
     for j in range(n + 1):
         if j != ind_coeff:
             diff_another(ind2, ind0, j, f_ind, e_ind,coefs[j])
-    
+
